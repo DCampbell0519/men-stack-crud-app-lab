@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= car.name %></title>
+</head>
+<body>
+    <a href="/cars">Back to Cars</a>
+    <h1><%= car.name %></h1>
+
+    <ul>
+        <p><%= car.name %> is a <%= car.year %>, <%= car.color %>, <%= car.make %> <%= car.model %>.</p>
+        <% if (car.isGoodForKids) {  %>
+            <p>She is good for kids. Less good for your dating life.</p>
+        <%  } else {  %>
+            <p>She is not so good for kids.  Way good for your dating life.</p>
+        <%  }  %>
+    </ul>
+
+</body>
+</html>
