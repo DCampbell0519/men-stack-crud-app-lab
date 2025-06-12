@@ -6,6 +6,7 @@
     <title>Show All Cars</title>
 </head>
 <body>
+    <a href="/">Back to Home Page</a>
     <a href="/cars/new">Add a Car</a>
     <h1>All Your Favorite Cars</h1>
     <ul>
@@ -20,7 +21,7 @@
                     <li>Year: <%= car.year %></li>
                     <li>Color: <%= car.color %></li>
                     <li>Good for Kids?: <%= car.isGoodForKids %></li>  
-                    <li><%= car.image %></li>     
+                    <li><img src="<%= car.image %>" alt="<%= car.name %>"></li>     
                 </ul>                
             </li>
         <%  }) %>
