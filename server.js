@@ -55,6 +55,18 @@ app.delete('/cars/:carId', async (req, res) => {
     res.redirect('/cars')
 })
 
+// UPDATE
+app.put('/cars/:carId', async (req, res) => {
+    console.log(req.body)
+    if (req.body.isGoodForKids === 'on') {
+        req.body.isGoodForKids = true;
+    } else {
+        req.body.isGoodForKids = false;
+    }
+    await Car.findByIdAndUpdate(req.params.carId, req.body)
+    res.redirect(`/cars/${req.params.carId}`)
+})
+
 // CREATE
 app.post('/cars', async (req, res) => {
     console.log(req.body)
@@ -72,6 +84,12 @@ app.post('/cars', async (req, res) => {
         return;
     }
     res.redirect('/cars')
+})
+
+// EDIT
+app.get('/cars/:carId/edit', async (req, res) => {
+    const foundCar = await Car.findById(req.params.carId)
+    res.render('cars/edit.ejs', { car: foundCar })
 })
 
 // SHOW

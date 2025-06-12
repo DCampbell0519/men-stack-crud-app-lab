@@ -17,6 +17,13 @@
             <p>She is not so good for kids.  Way good for your dating life.</p>
         <%  }  %>
     </ul>
+    <form action="/cars/<%= car._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete this Car</button>
+    </form>
+
+    <a href="/cars/<%= car.id %>/edit">
+        <button type="submit">Edit this Car</button>
+    </a>
 
 </body>
 </html>
