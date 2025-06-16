@@ -6,8 +6,11 @@ dotenv.config();
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
+
 const Car = require('./models/car');
+const User = require('./models/user');
 const carController = require('./controllers/carController.js');
+const authController = require('./controllers/authController.js');
 
 
 const connect = async () => {
@@ -23,7 +26,9 @@ app.use(express.json())
 app.use(morgan('dev'))
 app.use(methodOverride('_method'))
 
+app.use('/auth', authController);
 app.use(carController);
+
 
 
 app.get('/', (req, res) => {

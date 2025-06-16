@@ -21,7 +21,9 @@
                     <li>Year: <%= car.year %></li>
                     <li>Color: <%= car.color %></li>
                     <li>Good for Kids?: <%= car.isGoodForKids %></li>  
-                    <li><img src="<%= car.image %>" alt="<%= car.name %>"></li>     
+                    <div class="image">
+                        <li><img src="<%= car.image %>" alt="<%= car.year %>, <%= car.color %>, <%= car.make %> <%= car.model %> "></li>
+                    </div>     
                 </ul>                
             </li>
         <%  }) %>
