@@ -2,20 +2,14 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
-const morgan = require('morgan');
-const methodOverride = require('method-override');
-
+const middleware = require('./middleware/mid.js');
 const carRouter = require('./routes/car.js');
 const authController = require('./controllers/authController.js');
 
 require('./config/db.js');
 
 /*------------------------------- Middlewares -------------------------------*/
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
-app.use(morgan('dev'))
-app.use(methodOverride('_method'))
-
+middleware(app);
 app.use('/auth', authController);
 app.use('/cars', carRouter);
 
