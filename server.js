@@ -1,22 +1,14 @@
 /*------------------------------- Starter Code -------------------------------*/
 const express = require('express');
 const app = express();
-const dotenv = require('dotenv');
-dotenv.config();
-const mongoose = require('mongoose');
+require('dotenv').config();
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 
 const carRouter = require('./routes/car.js');
 const authController = require('./controllers/authController.js');
 
-
-const connect = async () => {
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log(`Connected to MongoDB ${mongoose.connection.name}`)
-}
-
-connect();
+require('./config/db.js');
 
 /*------------------------------- Middlewares -------------------------------*/
 app.use(express.urlencoded({ extended: true }))
