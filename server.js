@@ -7,9 +7,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 
-const Car = require('./models/car');
-const User = require('./models/user');
-const carController = require('./controllers/carController.js');
+const carRouter = require('./routes/car.js');
 const authController = require('./controllers/authController.js');
 
 
@@ -27,7 +25,7 @@ app.use(morgan('dev'))
 app.use(methodOverride('_method'))
 
 app.use('/auth', authController);
-app.use(carController);
+app.use('/cars', carRouter);
 
 
 

@@ -1,8 +1,14 @@
-const express = require('express');
-const router = express.Router();
 const Car = require('../models/car.js');
 
-module.exports = router;
+module.exports = {
+    index,
+    new: newCar,
+    delete: deleteCar,
+    update,
+    create, 
+    edit, 
+    show,
+}
 
 
 // I.N.D.U.C.E.S.
@@ -17,24 +23,24 @@ module.exports = router;
 
 
 // INDEX --> GET /cars
-router.get('/cars', async (req, res) => {
+async function index(req, res) {
     const allCars = await Car.find()
     res.render('cars/index.ejs', { cars: allCars })
-})
+}
 
 // NEW
-router.get('/cars/new', (req, res) => {
+function newCar(req, res) {
     res.render('cars/new.ejs')
-})
+}
 
 // DELETE
-router.delete('/cars/:carId', async (req, res) => {
+async function deleteCar(req, res) {
     await Car.findByIdAndDelete(req.params.carId)
     res.redirect('/cars')
-})
+}
 
 // UPDATE
-router.put('/cars/:carId', async (req, res) => {
+async function update(req, res) {
     console.log(req.body)
     if (req.body.isGoodForKids === 'on') {
         req.body.isGoodForKids = true;
@@ -43,10 +49,10 @@ router.put('/cars/:carId', async (req, res) => {
     }
     await Car.findByIdAndUpdate(req.params.carId, req.body)
     res.redirect(`/cars/${req.params.carId}`)
-})
+}
 
 // CREATE
-router.post('/cars', async (req, res) => {
+async function create(req, res) {
     console.log(req.body)
     if (req.body.isGoodForKids === 'on') {
         req.body.isGoodForKids = true;
@@ -62,16 +68,16 @@ router.post('/cars', async (req, res) => {
         return;
     }
     res.redirect('/cars')
-})
+}
 
 // EDIT
-router.get('/cars/:carId/edit', async (req, res) => {
+async function edit(req, res) {
     const foundCar = await Car.findById(req.params.carId)
     res.render('cars/edit.ejs', { car: foundCar })
-})
+}
 
 // SHOW
-router.get('/cars/:carId', async (req, res) => {
+async function show(req, res) {
     const foundCar = await Car.findById(req.params.carId)
     res.render('cars/show.ejs', { car: foundCar })
-})
+}
